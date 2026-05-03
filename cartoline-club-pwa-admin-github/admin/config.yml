@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: TUO-UTENTE-GITHUB/cartoline-club-app
+  repo: capitolo24aps-sudo/cartoline-club-app
   branch: main
 
 media_folder: "assets/uploads"
