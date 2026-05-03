@@ -1,0 +1,78 @@
+backend:
+  name: github
+  repo: TUO-UTENTE-GITHUB/cartoline-club-app
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "it"
+
+collections:
+  - name: "contenuti"
+    label: "Contenuti App"
+    files:
+      - file: "content/events.json"
+        name: "events"
+        label: "Eventi"
+        fields:
+          - label: "Eventi"
+            name: "events"
+            widget: "list"
+            summary: "{{fields.dataLabel}} · {{fields.titolo}}"
+            fields:
+              - { label: "Titolo", name: "titolo", widget: "string" }
+              - { label: "Categoria", name: "categoria", widget: "string", required: false }
+              - { label: "Data leggibile", name: "dataLabel", widget: "string" }
+              - { label: "Data tecnica", name: "dataISO", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", hint: "Serve per Evento del giorno e notifiche" }
+              - { label: "Orario", name: "orario", widget: "string", required: false, hint: "Esempio: 21:00 – 23:00" }
+              - { label: "Luogo", name: "luogo", widget: "string", required: false }
+              - { label: "Indirizzo", name: "indirizzo", widget: "string", required: false }
+              - { label: "Descrizione", name: "descrizione", widget: "text", required: false }
+              - { label: "Link dettagli", name: "link", widget: "string", required: false }
+
+      - file: "content/news.json"
+        name: "news"
+        label: "News"
+        fields:
+          - label: "News"
+            name: "news"
+            widget: "list"
+            summary: "{{fields.categoria}} · {{fields.titolo}}"
+            fields:
+              - { label: "Categoria", name: "categoria", widget: "string" }
+              - { label: "Titolo", name: "titolo", widget: "string" }
+              - { label: "Testo", name: "testo", widget: "text" }
+              - { label: "Link", name: "link", widget: "string", required: false }
+
+      - file: "content/settings.json"
+        name: "settings"
+        label: "Impostazioni"
+        fields:
+          - label: "Home"
+            name: "home"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Titolo principale", name: "claim", widget: "string" }
+              - { label: "Introduzione", name: "intro", widget: "text" }
+              - { label: "Titolo evidenza", name: "featureTitle", widget: "string" }
+              - { label: "Testo evidenza", name: "featureText", widget: "text" }
+          - label: "Contatti"
+            name: "contacts"
+            widget: "object"
+            fields:
+              - { label: "Indirizzo", name: "address", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Telefono", name: "phone", widget: "string" }
+              - { label: "WhatsApp internazionale", name: "whatsapp", widget: "string" }
+              - { label: "Facebook", name: "facebook", widget: "string" }
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "Contatti sito", name: "officialSite", widget: "string" }
+          - label: "Link principali"
+            name: "links"
+            widget: "object"
+            fields:
+              - { label: "Programma", name: "program", widget: "string" }
+              - { label: "Tesseramento", name: "membership", widget: "string" }
+              - { label: "Sostieni", name: "support", widget: "string" }

@@ -1,0 +1,23 @@
+{
+  "home": {
+    "badge": "💗 Presidio di Resistenza Umana",
+    "claim": "Cartoline Club<br>in tasca.",
+    "intro": "Eventi, appuntamenti del giorno, contatti e canali ufficiali in una web app installabile dal carattere notturno e pop.",
+    "featureTitle": "I dopocena in jazz del Cartoline Club",
+    "featureText": "Sezione pronta per evidenze, rassegne, appuntamenti speciali e comunicazioni ai soci."
+  },
+  "contacts": {
+    "address": "Via Friuli Diramazione II, 18 - Reggio Calabria",
+    "email": "capitolo24.aps@gmail.com",
+    "phone": "351 80 58 012",
+    "whatsapp": "393518058012",
+    "facebook": "https://www.facebook.com/groups/cartolineclub",
+    "instagram": "https://www.instagram.com/cartoline_club_official/",
+    "officialSite": "https://www.cartolineclub.it/contatti"
+  },
+  "links": {
+    "program": "https://www.cartolineclub.it/in-programma",
+    "membership": "https://www.cartolineclub.it/tesseramento-2026",
+    "support": "https://www.cartolinerock.it"
+  }
+}

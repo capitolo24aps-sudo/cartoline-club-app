@@ -1,0 +1,22 @@
+{
+  "news": [
+    {
+      "categoria": "Tesseramento",
+      "titolo": "Tesseramento 2026",
+      "testo": "Accesso rapido alla sezione tesseramento del sito ufficiale.",
+      "link": "https://www.cartolineclub.it/tesseramento-2026"
+    },
+    {
+      "categoria": "Programma",
+      "titolo": "Eventi in programma",
+      "testo": "La fonte ufficiale per gli appuntamenti futuri del Club.",
+      "link": "https://www.cartolineclub.it/in-programma"
+    },
+    {
+      "categoria": "Sostieni",
+      "titolo": "Sostieni Cartoline Club",
+      "testo": "Collegamento alla pagina ufficiale per sostenere il progetto.",
+      "link": "https://www.cartolinerock.it"
+    }
+  ]
+}

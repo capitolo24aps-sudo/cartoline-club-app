@@ -1,0 +1,30 @@
+{
+  "name": "Cartoline Club",
+  "short_name": "Cartoline",
+  "description": "App informativa per soci e simpatizzanti del Cartoline Club",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "categories": [
+    "entertainment",
+    "lifestyle",
+    "events"
+  ],
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

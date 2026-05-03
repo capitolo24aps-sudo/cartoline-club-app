@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Cartoline Club</title>
+  <meta name="description" content="App informativa per soci e simpatizzanti del Cartoline Club">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Cartoline">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <style>
+    :root{
+      --bg:#030004;
+      --ink:#fff;
+      --muted:#d8c3d1;
+      --hot:#ff48d0;
+      --hot2:#ff8be8;
+      --violet:#7c3cff;
+      --cyan:#19f7ff;
+      --acid:#d8ff3e;
+      --glass:rgba(255,255,255,.07);
+      --glass2:rgba(255,72,208,.10);
+      --line:rgba(255,72,208,.38);
+      --shadow:0 30px 100px rgba(0,0,0,.62);
+      --radius:32px;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 78% -8%,rgba(255,72,208,.42),transparent 28rem),
+        radial-gradient(circle at 12% 18%,rgba(124,60,255,.27),transparent 22rem),
+        radial-gradient(circle at 85% 70%,rgba(25,247,255,.13),transparent 24rem),
+        linear-gradient(180deg,#050006 0%,#0c0010 45%,#000 100%);
+      padding-bottom:92px;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 85%);
+    }
+    body:after{
+      content:"CARTOLINE CLUB";
+      position:fixed;
+      left:-8vw;
+      top:42vh;
+      z-index:-1;
+      font-size:clamp(70px,14vw,190px);
+      font-weight:1000;
+      letter-spacing:-.08em;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(255,72,208,.13);
+      transform:rotate(-8deg);
+      white-space:nowrap;
+      pointer-events:none;
+    }
+    a{color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+    header{
+      position:sticky;top:0;z-index:20;
+      background:linear-gradient(180deg,rgba(0,0,0,.86),rgba(0,0,0,.55));
+      backdrop-filter:blur(22px);
+      border-bottom:1px solid rgba(255,72,208,.28)
+    }
+    .top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+    .logo{
+      height:68px;max-width:390px;object-fit:contain;
+      filter:drop-shadow(0 0 10px rgba(255,72,208,.85)) drop-shadow(0 0 32px rgba(255,72,208,.45));
+    }
+    .desktop-nav{display:flex;gap:8px;flex-wrap:wrap}
+    button,.btn{
+      border:1px solid rgba(255,72,208,.42);
+      border-radius:999px;
+      padding:11px 16px;
+      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.035));
+      color:#fff;
+      font-weight:900;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    button:hover,.btn:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(255,72,208,.22),inset 0 1px 0 rgba(255,255,255,.14)}
+    button.active,.btn.primary{
+      background:linear-gradient(135deg,var(--hot),#ff86e8);
+      color:#170012;
+      border-color:#ffd4f6;
+      box-shadow:0 0 28px rgba(255,72,208,.44),0 0 70px rgba(255,72,208,.18);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      padding:38px 0 24px;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;right:6%;top:10%;
+      width:220px;height:220px;border-radius:999px;
+      border:1px solid rgba(255,72,208,.22);
+      box-shadow:0 0 70px rgba(255,72,208,.18), inset 0 0 70px rgba(255,72,208,.08);
+      pointer-events:none;
+    }
+    .card{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.035)),
+        radial-gradient(circle at 12% 0%,rgba(255,72,208,.12),transparent 22rem);
+      border:1px solid rgba(255,72,208,.34);
+      border-radius:var(--radius);
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+    .card:before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(255,255,255,.10),transparent 28%,rgba(255,72,208,.06) 65%,transparent);
+      pointer-events:none;
+    }
+    .card>*{position:relative}
+    .hero h1{
+      font-size:clamp(48px,8vw,92px);
+      line-height:.86;
+      letter-spacing:-.075em;
+      margin:18px 0;
+      text-transform:uppercase;
+      text-shadow:0 0 22px rgba(255,72,208,.32);
+    }
+    .hero p,.muted{color:var(--muted);font-size:18px;line-height:1.55}
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;
+      border-radius:999px;
+      background:rgba(255,72,208,.16);
+      color:#ffd1f6;
+      padding:8px 13px;
+      font-weight:1000;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      border:1px solid rgba(255,72,208,.36)
+    }
+    .feature{
+      background:
+        linear-gradient(135deg,rgba(255,72,208,.30),rgba(124,60,255,.16)),
+        radial-gradient(circle at 100% 0%,rgba(25,247,255,.18),transparent 18rem);
+      display:flex;flex-direction:column;justify-content:space-between;min-height:330px;
+    }
+    .feature:after{
+      content:"AFTER\\A CLUB";
+      white-space:pre;
+      position:absolute;right:-8px;bottom:-18px;
+      font-size:78px;line-height:.78;font-weight:1000;letter-spacing:-.08em;
+      color:rgba(255,255,255,.06);
+      text-align:right;
+    }
+    .feature h2{font-size:38px;line-height:.92;margin:12px 0;text-transform:uppercase;letter-spacing:-.04em}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:30px 0 17px}
+    .section-title small{color:#ffb8ef;text-transform:uppercase;letter-spacing:.24em;font-size:12px;font-weight:1000}
+    .section-title h2{margin:4px 0 0;font-size:38px;letter-spacing:-.04em;text-transform:uppercase}
+    .search{
+      width:100%;max-width:430px;padding:15px 17px;border-radius:19px;
+      border:1px solid rgba(255,72,208,.40);
+      background:rgba(0,0,0,.38);
+      color:#fff;outline:none;font-size:16px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.12)
+    }
+    .search:focus{box-shadow:0 0 0 3px rgba(255,72,208,.20),inset 0 1px 0 rgba(255,255,255,.12)}
+    .event{
+      display:grid;grid-template-columns:82px 1fr auto;gap:20px;align-items:center;margin:16px 0;
+    }
+    .event.card{border-left:5px solid var(--hot)}
+    .icon{
+      width:66px;height:66px;border-radius:24px;display:grid;place-items:center;
+      background:linear-gradient(135deg,rgba(255,72,208,.28),rgba(124,60,255,.18));
+      font-size:31px;border:1px solid rgba(255,72,208,.32);
+      box-shadow:0 0 32px rgba(255,72,208,.18)
+    }
+    .tag{
+      display:inline-block;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:1000;
+      color:#ffe0f8;background:rgba(255,72,208,.16);border:1px solid rgba(255,72,208,.30);margin-right:8px;
+      text-transform:uppercase;letter-spacing:.08em
+    }
+    .date{color:#bca6b6;font-size:14px}
+    .event h3{margin:9px 0;font-size:29px;letter-spacing:-.035em;text-transform:uppercase}
+    .event p{color:var(--muted);line-height:1.5;margin:0 0 11px}
+    .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;color:#f1ddea;font-size:14px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .hidden{display:none!important}
+    .status{
+      font-size:13px;color:#d1b8c9;margin-top:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+      padding:10px 12px;border:1px solid rgba(255,72,208,.22);border-radius:999px;background:rgba(0,0,0,.22);width:fit-content
+    }
+    .dot{width:9px;height:9px;border-radius:99px;background:#f59e0b;display:inline-block;box-shadow:0 0 16px currentColor}
+    .dot.ok{background:#22c55e}
+    .social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .whatsapp{background:#25D366!important;color:#06180c!important;border-color:#25D366!important}
+    .facebook{background:#1877F2!important;color:white!important;border-color:#1877F2!important}
+    .instagram{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4)!important;color:white!important;border-color:rgba(255,255,255,.25)!important}
+    .bottom-nav{
+      position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:40;
+      width:min(580px,calc(100% - 24px));display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:8px;
+      border:1px solid rgba(255,72,208,.42);border-radius:28px;
+      background:rgba(0,0,0,.74);backdrop-filter:blur(20px);
+      box-shadow:0 0 36px rgba(255,72,208,.18),0 20px 60px rgba(0,0,0,.55)
+    }
+    .bottom-nav button{justify-content:center;padding:10px 6px;font-size:12px;border-radius:20px}
+    .install{position:fixed;right:18px;bottom:104px;z-index:45;display:none}
+    .install.show{display:inline-flex}
+    footer{color:#a58c9e;padding:36px 0;font-size:14px}
+    @media(max-width:820px){
+      body:after{font-size:78px;top:53vh;left:-16vw}
+      .top{justify-content:center}.desktop-nav{display:none}
+      .logo{height:auto;width:100%;max-width:430px}
+      .hero,.grid3,.grid2{grid-template-columns:1fr}
+      .event{grid-template-columns:1fr}
+      .meta{grid-template-columns:1fr}
+      .card{padding:23px;border-radius:26px}
+      .event .btn{justify-content:center}
+      .install{left:18px;right:18px;justify-content:center}
+      .hero h1{font-size:clamp(44px,14vw,68px)}
+      .section-title h2{font-size:32px}
+    }
+    @media(min-width:821px){.bottom-nav{display:none}body{padding-bottom:0}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <img class="logo" src="/assets/logo-cartoline-club.png" alt="Cartoline Club">
+    <nav class="desktop-nav" aria-label="Navigazione principale">
+      <button class="active" data-tab="oggi">⭐ Oggi</button>
+      <button data-tab="eventi">📅 Eventi</button>
+      <button data-tab="news">📰 News</button>
+      <button data-tab="soci">👥 Soci</button>
+      <button data-tab="contatti">✉️ Contatti</button>
+    </nav>
+  </div>
+</header>
+
+<div style="border-bottom:1px solid rgba(255,72,208,.22);overflow:hidden;background:rgba(255,72,208,.055)">
+  <div style="white-space:nowrap;animation:marquee 22s linear infinite;font-weight:1000;letter-spacing:.18em;color:#ffb8ef;padding:9px 0;text-transform:uppercase">
+    &nbsp; ✦ eventi ✦ musica ✦ cinema ✦ club ✦ after club ✦ reggio calabria ✦ resistenza umana ✦ eventi ✦ musica ✦ cinema ✦ club ✦
+  </div>
+</div>
+<style>@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}</style>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="card">
+      <span class="pill" data-content="home-badge">💗 Presidio di Resistenza Umana</span>
+      <h1 data-content="home-claim">Cartoline Club<br>in tasca.</h1>
+      <p data-content="home-intro">Eventi, appuntamenti del giorno, contatti e canali ufficiali in una web app installabile dal carattere notturno e pop.</p>
+      <p>
+        <a class="btn primary" href="#oggi" onclick="showTab('oggi')">Evento del giorno</a>
+        <a class="btn" data-link="program" href="https://www.cartolineclub.it/in-programma" target="_blank" rel="noreferrer">Pagina ufficiale ↗</a>
+      </p>
+      <div id="syncStatus" class="status"><span class="dot"></span><span>Caricamento eventi dal sito ufficiale…</span></div>
+    </div>
+    <div class="card feature">
+      <div>
+        <div style="font-size:42px">🎷</div>
+        <small style="letter-spacing:.25em;text-transform:uppercase;color:#ffb8ef;font-weight:900">Cartoline After Club</small>
+        <h2 data-content="feature-title">I dopocena in jazz del Cartoline Club</h2>
+      </div>
+      <p class="muted" data-content="feature-text">Sezione pronta per evidenze, rassegne, appuntamenti speciali e comunicazioni ai soci.</p>
+    </div>
+  </section>
+
+
+  <section id="oggi" class="tab">
+    <div class="section-title">
+      <div><small>In evidenza</small><h2>Evento del giorno</h2></div>
+    </div>
+    <div id="todayEvent"></div>
+  </section>
+
+  <section id="eventi" class="tab hidden">
+    <div class="section-title">
+      <div><small>Eventi in programma</small><h2>Calendario soci</h2></div>
+      <input id="search" class="search" placeholder="Cerca evento, categoria, luogo...">
+    </div>
+    <div id="eventsList"></div>
+  </section>
+
+  <section id="news" class="tab hidden">
+    <div class="section-title"><div><small>Comunicazioni</small><h2>News e collegamenti</h2></div></div>
+    <div id="newsList" class="grid3"></div>
+  </section>
+
+  <section id="soci" class="tab hidden">
+    <div class="card">
+      <h2>ℹ️ Informazioni per i soci</h2>
+      <div class="grid2 muted">
+        <p>La app è pensata come punto rapido di consultazione da smartphone.</p>
+        <p>Gli eventi e le comunicazioni ufficiali rimandano sempre alle pagine del sito cartolineclub.it.</p>
+        <p>Può essere installata nella schermata Home senza passare dagli store.</p>
+        <p>La modalità offline mantiene consultabili le informazioni già caricate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti" class="tab hidden">
+    <div class="grid2">
+      <div class="card">
+        <small style="color:#ffb8ef;text-transform:uppercase;letter-spacing:.22em;font-weight:900">Dove siamo</small>
+        <h2>Cartoline Club</h2>
+        <p data-content="contact-address">📍 Via Friuli Diramazione II, 18 - Reggio Calabria</p>
+        <p data-content="contact-email">✉️ capitolo24.aps@gmail.com</p>
+        <p data-content="contact-phone">☎️ 351 80 58 012</p>
+        <div class="social-row">
+          <a class="btn whatsapp" data-link="whatsapp" href="https://wa.me/393518058012" target="_blank" rel="noreferrer">WhatsApp diretto</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Canali ufficiali</h2>
+        <p class="muted">Per aggiornamenti, comunicazioni e richiesta informazioni.</p>
+        <div class="social-row">
+          <a class="btn primary" data-link="contacts" href="https://www.cartolineclub.it/contatti" target="_blank" rel="noreferrer">Contatti sito ↗</a>
+          <a class="btn facebook" data-link="facebook" href="https://www.facebook.com/groups/cartolineclub" target="_blank" rel="noreferrer">Facebook ↗</a>
+          <a class="btn instagram" data-link="instagram" href="https://www.instagram.com/cartoline_club_official/" target="_blank" rel="noreferrer">Instagram ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Cartoline Club App · PWA installabile · Eventi da cartolineclub.it/in-programma</footer>
+</main>
+
+<button id="installBtn" class="btn primary install">Installa app</button>
+
+<nav class="bottom-nav" aria-label="Navigazione app">
+  <button class="active" data-tab="oggi">⭐<br>Oggi</button>
+  <button data-tab="eventi">📅<br>Eventi</button>
+  <button data-tab="news">📰<br>News</button>
+  <button data-tab="contatti">✉️<br>Contatti</button>
+</nav>
+
+<script src="/app.js"></script>
+</body>
+</html>
